@@ -2,6 +2,9 @@ const chatForm = document.getElementById('chat-form');
 const chatMessages = document.querySelector('.chat-messages');
 const roomName = document.getElementById('room-name');
 const userList = document.getElementById('users');
+const msg = document.getElementById('msg');
+const typingP = document.getElementById('typing');
+const typingdiv = document.getElementById('typingdiv');
 
 // Get username and room from URL
 const { username, room } = Qs.parse(location.search, {
@@ -9,6 +12,18 @@ const { username, room } = Qs.parse(location.search, {
 });
 
 const socket = io();
+msg.addEventListener('keypress', () => {
+    socket.emit('typing', "Someone is typing...")
+})
+socket.on('typing', message => {
+    typingdiv.style.visibility = "visible";
+    typingP.innerHTML = message;
+    function resub() {
+        typingdiv.style.visibility = 'hidden'
+    }
+    setTimeout(resub, 5000);
+
+})
 
 // Join chatroom
 socket.emit('joinRoom', { username, room });
