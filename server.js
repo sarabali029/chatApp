@@ -21,6 +21,9 @@ const botName = 'Admin';
 
 // Run when client connects
 io.on('connection', socket => {
+    socket.on('typing', message => {
+        socket.broadcast.emit('typing', message)
+    })
     socket.on('joinRoom', ({ username, room }) => {
         const user = userJoin(socket.id, username, room);
 
