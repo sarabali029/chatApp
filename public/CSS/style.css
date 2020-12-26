@@ -177,6 +177,24 @@ a {
 	margin-top: 20px;
 	width: 100%;
 }
+#typingdiv{
+	width: 30%;
+	height: 4vh;
+	
+	background-color: #5cb85c;
+	position: fixed;
+	left: 40%;
+	border-radius: 50px 50px 50px 50px;
+	top:16%;
+	visibility: hidden;
+}
+#typing{
+	align-items: center;
+	color: white;
+	position: fixed;
+	margin-left: 30px;
+
+}
 
 @media (max-width: 700px) {
 	.chat-main {
